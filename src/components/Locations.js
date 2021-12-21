@@ -9,7 +9,7 @@ export class Locations extends Component {
         this.state = {
              locations:[],
              display:false,
-             buttonText:"Show Location"
+             buttonText:"Show Locations"
         }
     }
 
