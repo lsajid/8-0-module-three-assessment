@@ -8,7 +8,7 @@ export class People extends Component {
         this.state = {
             userInput: "",
             people:[],
-            searched:"", 
+            displaySearched:"", 
         }
     }
 
@@ -32,16 +32,39 @@ export class People extends Component {
         }).catch((err)=> console.log(err));
     }
     
-    handleSubmit = () => {
-        console.log(`submitted form`)
+    handleSubmit = (event) => {
+        event.preventDefault();
+        let personFound = this.state.people.find((person)=> {
+            return person.name.toLowerCase() === this.state.userInput.toLowerCase()
+        });
+        if(personFound){
+            this.setState({
+                displaySearched: personFound,
+            })
+        } else{
+            this.setState({
+                displaySearched: <h3>Person Not Found</h3>
+            })
+        }
     }
 
+    renderPerson = (person) => {
+        return (
+          <div>
+            <div>Name: {person.name}</div>
+            <div>Age: {person.age}</div>
+            <div>Gender: {person.gender}</div>
+          </div>
+        );
+      };
+
     render() {
+        let searchInfo = this.state.displaySearched?.name && this.renderPerson(this.state.displaySearched)
         return (
             <div className='people'>
                 <h1>Search for a Person</h1>
                 <div>
-                    <form onSubmit={""}>
+                    <form onSubmit={this.handleSubmit}>
                         <input
                             type="text"
                             onChange={this.handleUserInput}
@@ -54,7 +77,7 @@ export class People extends Component {
                     </form>
                 </div>
                 <div className="person-data">
-                    Found 
+                    {searchInfo || this.state.displaySearched}
                 </div>
             </div>
         )
