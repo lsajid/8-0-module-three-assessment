@@ -32,6 +32,10 @@ export class People extends Component {
         }).catch((err)=> console.log(err));
     }
     
+    handleSubmit = () => {
+        console.log(`submitted form`)
+    }
+
     render() {
         return (
             <div className='people'>
