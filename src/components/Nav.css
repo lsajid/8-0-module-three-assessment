@@ -1,0 +1,24 @@
+nav {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    background-color: azure;
+    grid-gap:50px    
+}
+
+.options{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+nav img {
+    float: left;
+    margin-top: 2px;
+    border: rgb(43, 181, 160) solid 2px;
+}
+
+nav a:link:hover {
+    color:rgb(240, 193, 240);
+    text-decoration: none;
+}
